@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Призыватель - Calamity Terraria</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=MedievalSharp&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: 
+                url('IMG.Jpg') center/cover no-repeat fixed,
+                radial-gradient(circle at center, rgba(104, 1, 1, 0.6), rgba(10, 0, 0, 0.8));
+            min-height: 100vh;
+            font-family: 'Arial', sans-serif;
+            color: white;
+            padding: 20px;
+        }
+
+        /* Навигационная панель */
+        .navbar {
+            background: transparent;
+            padding: 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: none;
+            margin-bottom: 30px;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-around;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .nav-button {
+            position: relative;
+            flex: 1;
+            text-align: center;
+        }
+
+        .main-btn {
+            background: linear-gradient(45deg, #ff6b35, #f7931e);
+            color: white;
+            border: none;
+            padding: 20px 0;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .main-btn:hover {
+            background: linear-gradient(45deg, #ff8c42, #ffa94d);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 107, 53, 0.4);
+        }
+
+        .dropdown-content {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: rgba(104, 1, 1, 0.8);
+            border: 1px solid rgba(255, 107, 53, 0.3);
+            border-top: none;
+            display: none;
+            flex-direction: column;
+            backdrop-filter: blur(15px);
+        }
+
+        .nav-button:hover .dropdown-content {
+            display: flex;
+        }
+
+        .dropdown-btn {
+            background: transparent;
+            color: white;
+            border: none;
+            padding: 12px 17px;
+            text-align: left;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 16px;
+            border-bottom: 1px solid #333;
+            width: 100%;
+            text-decoration: none;
+            display: block;
+        }
+
+        .dropdown-btn:hover {
+            background: #ff6b35;
+            color: white;
+            transform: translateX(10px);
+        }
+
+        /* Заголовок страницы */
+        .page-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .page-title {
+            font-family: 'MedievalSharp', cursive;
+            font-size: 60px;
+            color: #ff7b00e0;
+            text-shadow:
+                0 0 10px #c41b01,
+                0 0 20px #ff3300,
+                0 0 40px #ff6600;
+            margin-bottom: 20px;
+        }
+
+        /* Стиль Таблицы */
+       .calamity-table {
+         width: 100%;
+         max-width: 1200px;
+         margin: 0 auto;
+          border-collapse: collapse;
+          background: rgba(0, 0, 0, 0.7);
+              border: 2px solid #ff6b35;
+                  border-radius: 10px;
+                    overflow: hidden;
+                 box-shadow: 0 0 20px rgba(255, 107, 53, 0.3);
+                }
+        .calamity-table a {
+         color: #ff8c00;
+             text-decoration: none;
+             transition: all 0.3s ease;
+             line-height: 2; /* Увеличиваем межстрочное расстояние */
+                }
+
+        .calamity-table a:hover {
+            color: #ffd700;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+}
+        .calamity-table th,
+        .calamity-table td {
+          line-height: 3; 
+          padding: 9px 5px; /* Большие отступы внутри ячеек */
+            border-right: 0.5px solid rgba(250, 163, 50, 0.685); 
+              text-align: left;
+                }
+
+            .calamity-table th {
+            background: linear-gradient(45deg, #ff6b35, #f7931e);
+            color: white;
+             font-size: 15px;
+                font-weight: bold;
+              text-transform: uppercase;      
+}
+
+            .calamity-table tr:hover td {
+            background: rgba(255, 107, 53, 0.1);
+}
+.section-title {
+            font-family: 'MedievalSharp', cursive;
+            font-size: 32px;
+            color: #ff9100;
+            margin-bottom: 15px;
+            text-shadow: 0 0 10px rgba(255, 140, 0, 0.5);
+            border-left: 4px solid #ff8c00;
+            padding-left: 15px;
+        }
+</style>
+</head>
+<body>
+    <!-- Навигационная панель -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-button">
+                <button class="main-btn" onclick="window.location.href='2.html'">Главная</button>
+            </div>
+            <div class="nav-button">
+                <button class="main-btn">Пре-Хардмод</button>
+                <div class="dropdown-content">
+                    <button class="dropdown-btn" onclick="window.location.href='summoner.html'">Призыватель</button>
+                    <button class="dropdown-btn" onclick="window.location.href='warrior.html'">Воин</button>
+                    <button class="dropdown-btn" onclick="window.location.href='mage.html'">Маг</button>
+                    <button class="dropdown-btn" onclick="window.location.href='ranger.html'">Стрелок</button>
+                    <button class="dropdown-btn" onclick="window.location.href='rogue.html'">Разбойник</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Заголовок страницы -->
+    <div class="page-header">
+        <h1 class="page-title">Призыватель - Пре-Хардмод</h1>
+    </div>
+
+    <!-- Броня -->
+    <div class="table-section">
+        <h2 class="section-title">Пре-Боссы</h2>
+        <table class="calamity-table">
+            <thead>
+                <tr>
+                    <th>Оружие</th>
+                    <th>Броня</th>
+                    <th>Аксессуары</th>
+                </tr>
+            </thead>
+            <tbody>
+             <tr>
+                <td>
+             <a href="https://calamitymod.wiki.gg/ru/wiki/Вульфрумовый_контроллер">Вульфрумовый контроллер</a><br>
+             <a href="https://calamitymod.wiki.gg/ru/wiki/Посох_штормовой_челюсти">Посох штормовой штормовой челюсти</a><br>
+             Стражи:<br>
+             <a href="https://calamitymod.wiki.gg/ru/wiki/Ржавый_прототип_маяка">Ржавый прототип маяка</a><br>
+             Держа в руках:<br>
+             <a href="https://terraria-game.fandom.com/ru/wiki/Кожаный_хлыст">Кожаный хлыст</a>
+            </td>
+            <td>
+             <a href="https://calamitymod.wiki.gg/ru/wiki/Вульфрумовая_броня">Вульфрумовая броня</a>
+                </td>
+                <td>
+                  <a href="https://calamitymod.wiki.gg/ru/wiki/Знак_духа">Знак духа</a><br>
+                  <a href="https://calamitymod.wiki.gg/ru/wiki/Привод_скитальца">Привод скитальца</a><br>
+                  <a href="https://terraria-game.fandom.com/ru/wiki/Ботинки_Гермеса">Ботинки Гермеса</a><br>
+                  <a href="https://terraria-game.fandom.com/ru/wiki/Вульфрумовый_аккумулятор">Вульфрумовый аккумулятор</a><br>
+                  <a href="https://terraria-game.fandom.com/ru/wiki/дополнительный_прыжок ">Любой дополнительный прыжок</a>
+                </td>
+</tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- боссы -->
+    <div class="table-section">
+        <h2 class="section-title">Пре-Пожиратель миров/Мозг Ктулху</h2>
+        <table class="calamity-table">
+                <tr>
+                    <td>
+              <thead>
+                <tr>
+                    <th>Оружие</th>
+                    <th>Броня</th>
+                    <th>Аксессуары</th>
+                </tr>
+            <tbody>
+                 <tr>
+                <td>
+             <a href="https://calamitymod.wiki.gg/ru/wiki/Посох_духа_белладонны">Посох духа белладонны</a><br>
+             <a href="https://calamitymod.wiki.gg/ru/wiki/Посох_штормовой_челюсти">Посох штормовой штормовой челюсти</a><br>
+             Стражи:<br>
+             <a href="https://calamitymod.wiki.gg/ru/wiki/Ржавый_прототип_маяка">Ржавый прототип маяка</a><br>
+             <a href="https://calamitymod.wiki.gg/ru/wiki/Посох_едкой_жабы">Посох едкой жабы</a><br>
+             <a href="https://calamitymod.wiki.gg/ru/wiki/Полипный_метатель">Полипный метатель</a><br>
+             Держа в руках:<br>
+             <a href="https://terraria-game.fandom.com/ru/wiki/Шипохват">Шипохват</a>
+            </td>
+            <td>
+             <a href="https://calamitymod.wiki.gg/ru/wiki/Вульфрумовая_броня">Вульфрумовая броня</a><br>
+             <a href="https://terraria-game.fandom.com/ru/wiki/Комплект_прилива">Комплект прилива</a>
+                </td>
+                <td>
+                  <a href="https://calamitymod.wiki.gg/ru/wiki/Знак_духа">Знак духа</a><br>
+                  <a href="https://calamitymod.wiki.gg/ru/wiki/Подарок_Луксора">Подарок Луксора</a><br>
+                  <a href="https://calamitymod.wiki.gg/ru/wiki/Привод_скитальца">Привод скитальца</a><br>
+                  <a href="https://terraria-game.fandom.com/ru/wiki/Ботинки_Гермеса">Ботинки Гермеса</a><br>
+                  <a href="https://terraria-game.fandom.com/ru/wiki/Вульфрумовый_аккумулятор">Вульфрумовый аккумулятор</a><br>
+                  <a href="https://terraria-game.fandom.com/ru/wiki/дополнительный_прыжок ">Любой дополнительный прыжок</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="table-section">
+        <h3 class="section-title">Пре-Разум улья/Перфораторы</h3>
+        <table class="calamity-table">
+            <thead>
+                <tr>
+                    <th>Оружие</th>
+                    <th>Броня</th>
+                    <th>Аксессуары</th>
+                </tr>
+            </thead>
+            <tbody>
+                 <tr>
+                <td>
+             <a href="https://calamitymod.wiki.gg/ru/wiki/Посох_духа_белладонны">Посох духа белладонны</a> или <a href="https://calamitymod.wiki.gg/ru/wiki/Посох_беса">Посох беса</a><br>
+             <a href="https://calamitymod.wiki.gg/ru/wiki/Посох_штормовой_челюсти">Посох штормовой штормовой челюсти</a><br>
+             Стражи:<br>
+             <a href="https://calamitymod.wiki.gg/ru/wiki/Ржавый_прототип_маяка">Ржавый прототип маяка</a><br>
+             <a href="https://calamitymod.wiki.gg/ru/wiki/Посох_едкой_жабы">Посох едкой жабы</a><br>
+             <a href="https://calamitymod.wiki.gg/ru/wiki/Жезл_баллисты">Жезл баллисты</a><br>
+             <a href="https://calamitymod.wiki.gg/ru/wiki/Полипный_метатель">Полипный метатель</a><br>
+             Держа в руках:<br>
+             <a href="https://terraria-game.fandom.com/ru/wiki/Шипохват">Шипохват</a>
+            </td>
+            <td>
+             <a href="https://calamitymod.wiki.gg/ru/wiki/Вульфрумовая_броня">Вульфрумовая броня</a><br>
+             <a href="https://terraria-game.fandom.com/ru/wiki/Комплект_прилива">Комплект прилива</a>
+                </td>
+                <td>
+                  <a href="https://calamitymod.wiki.gg/ru/wiki/Знак_духа">Знак духа</a><br>
+                  <a href="https://calamitymod.wiki.gg/ru/wiki/Подарок_Луксора">Подарок Луксора</a><br>
+                  <a href="https://calamitymod.wiki.gg/ru/wiki/Привод_скитальца">Привод скитальца</a><br>
+                  <a href="https://terraria-game.fandom.com/ru/wiki/Ботинки_Гермеса">Ботинки Гермеса</a><br>
+                  <a href="https://terraria-game.fandom.com/ru/wiki/Вульфрумовый_аккумулятор">Вульфрумовый аккумулятор</a><br>
+                  <a href="https://terraria-game.fandom.com/ru/wiki/дополнительный_прыжок ">Любой дополнительный прыжок</a>
+                </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="table-section">
+        <h2 class="section-title">Пре-Скелетрон</h2>
+        <table class="calamity-table">
+            <thead>
+                <tr>
+                    <th>Оружие</th>
+                    <th>Броня</th>
+                    <th>Аксессуары</th>
+                </tr>
+            </thead>
+            <tbody>
+                 <tr>
+                <td>
+             <a href="https://calamitymod.wiki.gg/ru/wiki/Посох_духа_белладонны">Посох духа белладонны</a> или <a href="https://calamitymod.wiki.gg/ru/wiki/Посох_беса">Посох беса</a><br>
+             <a href="https://calamitymod.wiki.gg/ru/wiki/Посох_штормовой_челюсти">Посох штормовой штормовой челюсти</a><br>
+             Стражи:<br>
+             <a href="https://calamitymod.wiki.gg/ru/wiki/Ржавый_прототип_маяка">Ржавый прототип маяка</a><br>
+             <a href="https://calamitymod.wiki.gg/ru/wiki/Посох_едкой_жабы">Посох едкой жабы</a><br>
+             <a href="https://calamitymod.wiki.gg/ru/wiki/Гончиус_Стрелятиус">Гончиус Стрелятиус</a><br>
+             <a href="https://calamitymod.wiki.gg/ru/wiki/Полипный_метатель">Полипный метатель</a><br>
+             Держа в руках:<br>
+             <a href="https://terraria-game.fandom.com/ru/wiki/Шипохват">Шипохват</a><br>
+             Предметы поддержки:<br>
+             <a href="https://terraria-game.fandom.com/ru/wiki/Эстетикус">Эстетикус</a><br>
+            </td>
+            <td>
+             <a href="https://calamitymod.wiki.gg/ru/wiki/Аэрофазовый_комплект">Аэрофазовый комплект</a><br>
+             <a href="https://terraria-game.fandom.com/ru/wiki/Пчелиная_броня">Пчелиная броня</a>
+                </td>
+                <td>
+                  <a href="https://calamitymod.wiki.gg/ru/wiki/Знак_духа">Знак духа</a><br>
+                  <a href="https://calamitymod.wiki.gg/ru/wiki/Подарок_Луксора">Подарок Луксора</a><br>
+                  <a href="https://calamitymod.wiki.gg/ru/wiki/Ожерелье_пигмеев">Ожерелье пигмеев</a><br>
+                  <a href="https://terraria-game.fandom.com/ru/wiki/Ботинки_Гермеса">Ботинки Гермеса</a><br>
+                  <a href="https://terraria-game.fandom.com/ru/wiki/Вульфрумовый_аккумулятор">Вульфрумовый аккумулятор</a><br>
+                  <a href="https://terraria-game.fandom.com/ru/wiki/дополнительный_прыжок ">Любой дополнительный прыжок</a>
+                </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+     <div class="table-section">
+        <h2 class="section-title">Пре-Стена плоти</h2>
+        <table class="calamity-table">
+            <thead>
+                <tr>
+                    <th>Оружие</th>
+                    <th>Броня</th>
+                    <th>Аксессуары</th>
+                </tr>
+            </thead>
+            <tbody>
+                 <tr>
+                <td>
+             <a href="https://calamitymod.wiki.gg/ru/wiki/Посох_некростеоцита">Посох некростеоцита</a><br>
+             <a href="https://calamitymod.wiki.gg/ru/wiki/Посох_селёдки">Посох селёдки</a><br>
+             Стражи:<br>
+             <a href="https://calamitymod.wiki.gg/ru/wiki/Ржавый_прототип_маяка">Ржавый прототип маяка</a><br>
+             <a href="https://calamitymod.wiki.gg/ru/wiki/Посох_едкой_жабы">Посох едкой жабы</a><br>
+             <a href="https://calamitymod.wiki.gg/ru/wiki/Гончиус_Стрелятиус">Гончиус Стрелятиус</a><br>
+             <a href="https://calamitymod.wiki.gg/ru/wiki/Полипный_метатель">Полипный метатель</a><br>
+             Держа в руках:<br>
+             <a href="https://terraria-game.fandom.com/ru/wiki/Спинной_прокол ">Спинной прокол </a><br>
+             <a href="https://terraria-game.fandom.com/ru/wiki/Посох_слизня-марионетки">Посох слизня-марионетки</a><br>
+             Предметы поддержки:<br>
+             <a href="https://terraria-game.fandom.com/ru/wiki/Эстетикус">Эстетикус</a><br>
+            </td>
+            <td>
+             <a href="https://calamitymod.wiki.gg/ru/wiki/Статигелевый_комплект">Статигелевый комплект</a><br>
+             <a href="https://terraria-game.fandom.com/ru/wiki/Пчелиная_броня">Пчелиная броня</a>
+                </td>
+                <td>
+                  <a href="https://calamitymod.wiki.gg/ru/wiki/Знак_духа">Знак духа</a><br>
+                  <a href="https://calamitymod.wiki.gg/ru/wiki/Подарок_Луксора">Подарок Луксора</a><br>
+                  <a href="https://calamitymod.wiki.gg/ru/wiki/Ожерелье_пигмеев">Ожерелье пигмеев</a><br>
+                  <a href="https://terraria-game.fandom.com/ru/wiki/Искромётные_терра-ботинки">Искромётные терра-ботинки</a><br>
+                  <a href="https://terraria-game.fandom.com/ru/wiki/Заряженный_желейный_аккумулятор">Заряженный желейный аккумулятор</a><br>
+                  <a href="https://terraria-game.fandom.com/ru/wiki/Связка_надувных_шариков_с_подковой ">Связка надувных шариков с подковой</a>
+                </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <!-- Поздравление -->
+<div class="congratulations">
+    <div class="congrats-text">ПОЗДРАВЛЯЕМ ВЫ ПЕРЕШЛИ В ХАРДМОД</div>
+</div>
+
+<style>
+    .congratulations {
+        text-align: center;
+        margin: 50px 0;
+        padding: 40px 20px;
+    }
+
+    .congrats-text {
+        font-family: 'MedievalSharp', cursive;
+        font-size: 48px;
+        color: #ffd700; /* Золотой цвет */
+        text-shadow:
+            0 0 10px #ff6b35,
+            0 0 20px #ff4500,
+            0 0 40px #ff0000,
+            0 0 80px #8b0000;
+        background: linear-gradient(45deg, #ff8c00, #ffd700, #ff4500);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        letter-spacing: 2px;
+        font-weight: bold;
+    }
+</style>
+</body>
+</html>
